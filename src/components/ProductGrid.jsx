@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import ShopifyBuyButton from './ShopifyBuyButton'
 
 function ProductGrid({ setCurrentPage }) {
   const [searchTerm, setSearchTerm] = useState('')
@@ -7,34 +8,112 @@ function ProductGrid({ setCurrentPage }) {
   const products = [
     {
       id: 1,
-      name: 'Dragon Slayer',
-      paintedPrice: 149.99,
-      unpaintedPrice: 29.99,
-      image: 'https://placehold.co/400x400',
-      description: 'Hand-painted dragon slayer miniature',
-      category: 'Fantasy'
+      name: 'Harley Quinn',
+      category: 'Fantasy',
+      shopifyId: '7224054153271'
     },
     {
       id: 2,
-      name: 'Space Marine',
-      paintedPrice: 169.99,
-      unpaintedPrice: 34.99,
-      image: 'https://placehold.co/400x400',
-      description: 'Custom painted space marine',
-      category: 'Sci-Fi'
+      name: 'xenomorph-inspired figure',  // You can update this name to match your product
+      category: 'Sci-Fi',  // Update category as needed
+      shopifyId: '7227864416311'  // This is the new product ID from your code
     },
     {
       id: 3,
-      name: 'Elven Ranger',
-      paintedPrice: 129.99,
-      unpaintedPrice: 24.99,
-      image: 'https://placehold.co/400x400',
-      description: 'Detailed elven ranger with bow',
-      category: 'Fantasy'
+      name: 'Optimus prime',  
+      category: 'Sci-Fi',  
+      shopifyId: '7227864940599'   
+    },
+    {
+      id: 4,
+      name: 'Ermac',  
+      category: 'MK',  
+      shopifyId: '7227866513463'  
+    },
+
+    {
+      id: 5,
+      name: 'Sonya Blade',  
+      category: 'MK',  
+      shopifyId: '7227872149559'  
+    },
+
+    
+
+    {
+      id: 6,
+      name: 'jax',  
+      category: 'MK',  
+      shopifyId: '7227875229751'  
+    },
+
+    {
+      id: 7,
+      name: 'Kitana',  
+      category: 'MK',  
+      shopifyId: '7227875622967'  
+    },
+
+    {
+      id: 8, // next
+      name: 'mellena',  
+      category: 'MK',  
+      shopifyId: '7227876671543'  
+    },
+
+    {
+      id: 9,// next
+      name: 'Noob',  
+      category: 'MK',  
+      shopifyId: '7227879718967'  
+    },
+
+    {
+      id: 10,
+      name: 'raiden',  
+      category: 'MK',  
+      shopifyId: '7227881553975'  
+    },
+
+    {
+      id: 11,
+      name: 'scorpion',  
+      category: 'MK',  
+      shopifyId: '7227883913271'  
+    },
+
+    {
+      id: 12,
+      name: 'sector',  
+      category: 'MK',  
+      shopifyId: '7227886698551'  
+    },
+
+    {
+      id: 13,
+      name: 'sindel-edenian',  
+      category: 'MK',  
+      shopifyId: '7227902427191'  
+    },
+
+    {
+      id: 14,
+      name: 'subzero',  
+      category: 'MK',  
+      shopifyId: '7227902623799'  
+    },
+    
+    {
+      id: 15,
+      name: 'Jade',  
+      category: 'MK',  
+      shopifyId: '7227873230903'  
     }
+
+    
   ]
 
-  const categories = ['All', 'Fantasy', 'Sci-Fi', 'Historical']
+  const categories = ['All', 'Fantasy', 'Sci-Fi', 'Historical', 'MK']
 
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -112,72 +191,12 @@ function ProductGrid({ setCurrentPage }) {
             background: '#2a2a2a', 
             padding: '15px', 
             borderRadius: '8px',
-            transition: 'transform 0.2s',
-            cursor: 'pointer'
+            transition: 'transform 0.2s'
           }}
           onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-5px)'}
           onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
           >
-            <img 
-              src={product.image}
-              alt={product.name}
-              style={{
-                width: '100%', 
-                height: '250px', 
-                objectFit: 'cover', 
-                borderRadius: '4px'
-              }}
-            />
-            <h2 style={{margin: '10px 0'}}>{product.name}</h2>
-            <p style={{color: '#aaa'}}>{product.description}</p>
-            <p style={{color: '#4CAF50'}}>Category: {product.category}</p>
-            <div style={{
-              display: 'flex', 
-              flexDirection: 'column',
-              gap: '10px',
-              marginTop: '10px'
-            }}>
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center'
-              }}>
-                <span style={{color: '#4CAF50', fontSize: '1.1rem'}}>${product.paintedPrice}</span>
-                <button style={{
-                  background: '#4CAF50', 
-                  color: 'white', 
-                  border: 'none', 
-                  padding: '8px 16px', 
-                  borderRadius: '4px', 
-                  cursor: 'pointer'
-                }}
-                onMouseEnter={e => e.currentTarget.style.background = '#45a049'}
-                onMouseLeave={e => e.currentTarget.style.background = '#4CAF50'}
-                >
-                  Add Painted to Cart
-                </button>
-              </div>
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center'
-              }}>
-                <span style={{color: '#808080', fontSize: '1.1rem'}}>${product.unpaintedPrice}</span>
-                <button style={{
-                  background: '#808080', 
-                  color: 'white', 
-                  border: 'none', 
-                  padding: '8px 16px', 
-                  borderRadius: '4px', 
-                  cursor: 'pointer'
-                }}
-                onMouseEnter={e => e.currentTarget.style.background = '#666666'}
-                onMouseLeave={e => e.currentTarget.style.background = '#808080'}
-                >
-                  Add Unpainted to Cart
-                </button>
-              </div>
-            </div>
+            <ShopifyBuyButton productId={product.shopifyId} />
           </div>
         ))}
       </div>
